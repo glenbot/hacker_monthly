@@ -2,11 +2,11 @@
 
 ![Hacker Monthly Finder Screen Shot](http://i.imgur.com/t4uUEWw.png)
 
-This was a saturday side project and the goal was to index all of the articles in the current issues of hacker monthly and make the data searchable. I wanted this because there were multiple times when I was at work and remember some cool utility or hack I read about and couldn't find which Hacker Monthly contained the wisdom I needed.
+This was a Saturday side project and the goal was to index all of the articles in the current issues of hacker monthly and make the data searchable. I wanted this because there were multiple times when I was at work and remember some cool utility or hack I read about and couldn't find which Hacker Monthly contained the wisdom I needed.
 
 To use this project you will need the following requirements:
 
-* Python (virtual environments optional)
+* Python 2.7+ (virtual environments optional)
 * Elastic search version 1.1.1 - https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.1.1.tar.gz
 
 Follow the steps below to get your own index running:
