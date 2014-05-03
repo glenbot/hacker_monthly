@@ -1,0 +1,20 @@
+div.results {
+    margin-top: 20px;
+    margin-left: 3px;
+}
+
+div.results p.result {
+    padding: 5px 0 5px 10px;
+}
+
+div.results p.result:nth-child(even) {
+    background-color: #DDD;
+} 
+
+div.results p.result h5 {
+    color: #333;
+}
+
+div.results p.result p {
+    margin: 2px;
+}

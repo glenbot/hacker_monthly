@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ APP_NAME }}</h1>
+    <div class="row">
+        <form class="form-inline" role="form">
+            <div class="form-group col-xs-6">
+                <input style="width:100%" type="input" name="query" class="form-control" placeholder="Search Text Here" />
+            </div>
+            <button type="submit" class="btn btn-default">SEARCH</button>
+        </form>
+    </div>
+    <div class="row results"></div>
+{% endblock %}
+
+{% block bottom_scripts %}
+<script type="text/javascript">
+    var el_results = $('div.results');
+    var search = function() {
+        var query = $('input[name="query"]').val();
+        
+        // empty the results
+        el_results.empty();
+
+        // get new results
+        $.ajax({ 
+            url: '/query',
+            data: {'query': query}
+        }).then(function(data) {
+            if (data.results) {
+                for (var i in data.results) {
+                    var source = data.results[i]._source;
+                    var magazine = source.name;
+                    var title = source.title;
+                    var author = source.author;
+
+                    var result = $('<p class="result"></p>');
+                    result.append('<h5>' + title + ' by ' + author + '</h5>');
+                    result.append('<p><em>In ' + magazine + '</em></p>');
+
+                    el_results.append(result);
+                };
+            } else {
+                var result = $('<p><h5>No Results Found</h5></p>');
+                el_results.append(result);               
+            }
+        });
+
+        return false;
+    };
+
+    $('button').click(search);
+    $('button').keypress(function(event) {
+        if (event.which == 13) {
+            search();
+        }
+    });
+</script>
+{% endblock %}

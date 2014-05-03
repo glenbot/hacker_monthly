@@ -1,0 +1,143 @@
+{
+    "settings" : {
+        "number_of_shards" : 2,
+        "analysis" : {
+            "filter" : {
+                "str_ngrams_front" : {
+                    "side" : "front",
+                    "max_gram" : 50,
+                    "min_gram" : 2,
+                    "type" : "edgeNGram"
+                },
+                "str_ngrams_middle" : {
+                    "max_gram" : 50,
+                    "min_gram" : 2,
+                    "type" : "nGram"
+                },
+                "str_ngrams_back" : {
+                    "side" : "back",
+                    "max_gram" : 50,
+                    "min_gram" : 2,
+                    "type" : "edgeNGram"
+                }
+            },
+            "analyzer" : {
+                "full_str" : {
+                    "filter" : [
+                        "standard",
+                        "lowercase",
+                        "asciifolding"
+                     ],
+                    "type":"custom",
+                    "tokenizer":"standard"
+                },
+                "partial_str_front" : {
+                    "filter" : [
+                        "standard",
+                        "lowercase",
+                        "asciifolding",
+                        "str_ngrams_front"
+                     ],
+                    "type":"custom",
+                    "tokenizer":"standard"
+                },
+                "partial_str_middle" : {
+                    "filter" : [
+                        "standard",
+                        "lowercase",
+                        "asciifolding",
+                        "str_ngrams_middle"
+                     ],
+                    "type":"custom",
+                    "tokenizer":"standard"
+                },
+                "partial_str_back" : {
+                    "filter" : [
+                        "standard",
+                        "lowercase",
+                        "asciifolding",
+                        "str_ngrams_back"
+                     ],
+                    "type":"custom",
+                    "tokenizer":"standard"
+                }
+            }
+        }
+    },
+    "mappings" : {
+        "articles" : {
+            "properties" : {
+                "name" :  {
+                    "fields" : {
+                        "name": {
+                            "type" : "string",
+                            "analyzer": "full_str",
+                            "null_value" : "null"
+                        }
+                    },
+                    "type" : "string"
+                },
+                "title" : {
+                    "fields" : {
+                        "title" : {
+                            "type" : "string",
+                            "analyzer" : "full_str",
+                            "null_value" : "null"
+                        },
+                        "partial.front": {
+                            "type" : "string",
+                            "search_analyzer" : "full_str",
+                            "index_analyzer" : "partial_str_front"
+                        },
+                        "partial.middle": {
+                            "type" : "string",
+                            "search_analyzer" : "full_str",
+                            "index_analyzer" : "partial_str_middle"
+                        }
+                    },
+                    "type" : "string"
+                },
+                "author" : {
+                    "fields" : {
+                        "author" : {
+                            "type" :"string",
+                            "analyzer" : "full_str",
+                            "null_value" : "null"
+                        },
+                        "partial.front": {
+                            "type" : "string",
+                            "search_analyzer" : "full_str",
+                            "index_analyzer" : "partial_str_front"
+                        }
+                    },
+                    "type" : "string"
+                },
+                "content" : {
+                    "fields" : {
+                        "content" : {
+                            "type" :"string",
+                            "analyzer" : "full_str",
+                            "null_value" : "null"
+                        },
+                        "partial.front": {
+                            "type" : "string",
+                            "search_analyzer" : "full_str",
+                            "index_analyzer" : "partial_str_front"
+                        },
+                        "partial.middle": {
+                            "type" : "string",
+                            "search_analyzer" : "full_str",
+                            "index_analyzer" : "partial_str_middle"
+                        },
+                        "partial.back": {
+                            "type" : "string",
+                            "search_analyzer" : "full_str",
+                            "index_analyzer" : "partial_str_back"
+                        }
+                    },
+                    "type" : "string"
+                }
+            }
+        }
+    }
+}
