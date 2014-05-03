@@ -2,7 +2,7 @@
 
 ![Hacker Monthly Finder Screen Shot](http://i.imgur.com/t4uUEWw.png)
 
-This was a Saturday side project and the goal was to index all of the articles in the current issues of hacker monthly and make the data searchable. I wanted this because there were multiple times when I was at work and remember some cool utility or hack I read about and couldn't find which Hacker Monthly contained the wisdom I needed.
+This was a Saturday side project and the goal was to index all of the articles in the current issues of hacker monthly and make the data searchable. I wanted this because there were multiple times when I was at work and remembered some cool utility or hack I read about and couldn't find which Hacker Monthly contained the wisdom I needed.
 
 To use this project you will need the following requirements:
 
