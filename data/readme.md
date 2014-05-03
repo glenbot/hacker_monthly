@@ -1,1 +1,1 @@
-Pub the Hacker Monthly epub files in this directory
+Put the Hacker Monthly epub files in this directory
