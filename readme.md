@@ -70,6 +70,10 @@ If you add or remove hacker montly files from the `data` directory you can alway
 
     $ python manage.py query_index "Some search string"
 
+## Caveats
+
+Some of the older hacker monthly from 2010 are not parsing correctly. The TOC in the epub files don't contain the articles in the epub which makes it harder to parse. It does a decent job of it though.
+
 ## Issues
 
 Please use the github issue tracker.
